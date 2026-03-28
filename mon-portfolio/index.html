@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iyad Hadjour — Portfolio Dev Web & IoT</title>
+  <meta name="description" content="Portfolio d'Iyad Hadjour — Étudiant en Bachelor MOC, développeur web et IoT, disponible en alternance 2 ans dès septembre 2026." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <canvas id="gl-canvas"></canvas>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-bar"><div class="loader-fill" id="loader-fill"></div></div>
+      <div class="loader-label" id="loader-label">CHARGEMENT — 0%</div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav id="nav">
+    <a class="nav-logo" href="#">[ <span>IH</span> ]</a>
+    <ul class="nav-links">
+      <li><a href="#hero"    data-section="0">01 — Home</a></li>
+      <li><a href="#work"    data-section="1">02 — Work</a></li>
+      <li><a href="#about"   data-section="2">03 — About</a></li>
+      <li><a href="#contact" data-section="3">04 — Contact</a></li>
+    </ul>
+    <div class="nav-avail">
+      <span class="avail-dot"></span>
+      Disponible
+    </div>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="#hero"    data-section="0">Home</a></li>
+      <li><a href="#work"    data-section="1">Work</a></li>
+      <li><a href="#about"   data-section="2">About</a></li>
+      <li><a href="#contact" data-section="3">Contact</a></li>
+    </ul>
+  </div>
+
+  <main id="main-scroll">
+
+    <!-- SECTION 01 — HERO -->
+    <section class="fp-section" id="hero" data-index="0">
+      <div class="section-count" aria-hidden="true">01</div>
+
+      <div class="hero-content">
+        <div class="hero-eyebrow reveal">
+          <span class="eyebrow-line"></span>
+          Étudiant Dev Web &amp; IoT — Paris 🇫🇷
+        </div>
+        <h1 class="hero-title">
+          <span class="title-line reveal delay-1"><span class="title-stroke">CRÉER</span></span>
+          <span class="title-line reveal delay-2">DU <span class="title-grad">WEB</span></span>
+          <span class="title-line reveal delay-3"><span class="title-stroke">QUI CLAQUE.</span></span>
+        </h1>
+        <p class="hero-sub reveal delay-4">
+          // Interfaces Web · IoT &amp; Arduino · Site propre<br>
+          Je transforme des idées en expériences web inoubliables.<br>
+          <span style="color:rgba(255,255,255,.18);font-size:10px">Fait avec ♥ par votre serviteur Iyad Hadjour</span>
+        </p>
+        <div class="hero-ctas reveal delay-5">
+          <a class="btn-neon" href="#work">Voir mes projets <span>→</span></a>
+          <a class="btn-ghost" href="#contact">Me contacter</a>
+        </div>
+      </div>
+
+      <div class="hero-side-info" aria-hidden="true">
+        <div class="side-scroll-hint">
+          <span>Scroll</span>
+          <div class="side-line"><div class="side-line-fill"></div></div>
+        </div>
+        <div class="side-socials">
+          <a href="https://github.com/Iyaiya2" target="_blank" rel="noopener">GH</a>
+          <a href="https://www.linkedin.com/in/iyad-hadjour" target="_blank" rel="noopener">LN</a>
+        </div>
+      </div>
+
+      <div class="marquee-wrap" aria-hidden="true">
+        <div class="marquee-track">
+          <span>HTML &amp; CSS ✦ JavaScript ✦ React ✦ Node.js ✦ WordPress ✦ Elementor ✦ Arduino ✦ ESP32 ✦ IoT ✦ C++ ✦ Git ✦ </span>
+          <span>HTML &amp; CSS ✦ JavaScript ✦ React ✦ Node.js ✦ WordPress ✦ Elementor ✦ Arduino ✦ ESP32 ✦ IoT ✦ C++ ✦ Git ✦ </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02 — WORK -->
+    <section class="fp-section" id="work" data-index="1">
+      <div class="section-count" aria-hidden="true">02</div>
+      <div class="section-label reveal">02 — Projets récents</div>
+      <div class="work-layout">
+        <div class="work-heading">
+          <h2 class="section-title reveal delay-1">MES<br><span class="title-grad">PROJETS</span><br>RÉCENTS.</h2>
+        </div>
+        <div class="project-list">
+
+          <div class="project-item reveal delay-2">
+            <div class="pi-left">
+              <span class="pi-num">01 /</span>
+              <div>
+                <div class="pi-name">OceanDepth — Jeu en C</div>
+                <div class="pi-desc">Jeu d'exploration et survie sous-marine en langage C. Gestion oxygène, points de vie, créatures marines, trésors et équipement. Interface textuelle tour par tour.</div>
+              </div>
+            </div>
+            <div class="pi-right">
+              <div class="pi-tags"><span>C</span><span>Structures</span><span>Jeu</span></div>
+              <a class="pi-link" href="https://github.com/Iyaiya2/Oceandephts" target="_blank" rel="noopener">↗</a>
+            </div>
+          </div>
+
+          <div class="project-item reveal delay-3">
+            <div class="pi-left">
+              <span class="pi-num">02 /</span>
+              <div>
+                <div class="pi-name">Dragon Fighter — Jeu JS</div>
+                <div class="pi-desc">Jeu de combat développé en JavaScript. Affrontez des dragons dans une interface dynamique et interactive.</div>
+              </div>
+            </div>
+            <div class="pi-right">
+              <div class="pi-tags"><span>JavaScript</span><span>Jeu</span></div>
+              <a class="pi-link" href="https://github.com/Iyaiya2/dragonfighter" target="_blank" rel="noopener">↗</a>
+            </div>
+          </div>
+
+          <div class="project-item reveal delay-4">
+            <div class="pi-left">
+              <span class="pi-num">03 /</span>
+              <div>
+                <div class="pi-name">Projet Dublin — Fournitures Scolaires</div>
+                <div class="pi-desc">Site e-commerce de fournitures scolaires en ligne développé avec React.js. Réalisé lors de la Learning Expedition à Dublin.</div>
+              </div>
+            </div>
+            <div class="pi-right">
+              <div class="pi-tags"><span>React.js</span><span>E-commerce</span></div>
+              <a class="pi-link" href="https://github.com/Iyaiya2/Projet_dublin" target="_blank" rel="noopener">↗</a>
+            </div>
+          </div>
+
+          <div class="project-item reveal delay-5">
+            <div class="pi-left">
+              <span class="pi-num">04 /</span>
+              <div>
+                <div class="pi-name">API Gestion Produits &amp; Catégories</div>
+                <div class="pi-desc">API REST complète en Node.js + Express + MongoDB. Gestion des catégories et produits associés avec toutes les opérations CRUD.</div>
+              </div>
+            </div>
+            <div class="pi-right">
+              <div class="pi-tags"><span>Node.js</span><span>Express</span><span>MongoDB</span></div>
+              <a class="pi-link" href="https://github.com/Iyaiya2/gestion-produits-categories" target="_blank" rel="noopener">↗</a>
+            </div>
+          </div>
+
+          <div class="project-item reveal delay-6">
+            <div class="pi-left">
+              <span class="pi-num">05 /</span>
+              <div>
+                <div class="pi-name">App Mobile — Magasin</div>
+                <div class="pi-desc">Application mobile cross-platform développée avec Expo (React Native). Simulation d'un magasin en ligne avec navigation et gestion de produits.</div>
+              </div>
+            </div>
+            <div class="pi-right">
+              <div class="pi-tags"><span>React Native</span><span>Expo</span></div>
+              <a class="pi-link" href="https://github.com/Iyaiya2/app-mobile" target="_blank" rel="noopener">↗</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03 — ABOUT -->
+    <section class="fp-section" id="about" data-index="2">
+      <div class="section-count" aria-hidden="true">03</div>
+      <div class="section-label reveal">03 — À propos</div>
+      <div class="about-layout">
+        <div class="about-left">
+          <h2 class="about-title reveal delay-1">JE CODE<br><em>CE QUE</em><br>J'IMAGINE.</h2>
+          <p class="about-txt reveal delay-2">Étudiant en 3ᵉ année en Bachelor Mobilités &amp; Objets Connectés (MOC) à l'ESGI Paris, je recherche une <strong>alternance de 2 ans</strong> à partir de 2026.</p>
+          <p class="about-txt reveal delay-3">Intéressé par les technologies, je développe mes compétences en électronique et IoT. Je réalise des sites WordPress, fais de la maintenance informatique et participe à la gestion de projet. Motivé, je suis prêt à apprendre et à m'investir.</p>
+          <p class="about-txt reveal delay-3">Disponible pour <strong>alternance</strong> et missions <strong>freelance</strong>.</p>
+
+          <!-- BOUTON CV -->
+          <div class="reveal delay-4" style="margin-top:1.5rem;margin-bottom:1.5rem;">
+            <a class="btn-neon" href="cv-iyad-hadjour.pdf" download="CV_Iyad_Hadjour.pdf">
+              Télécharger mon CV <span>↓</span>
+            </a>
+          </div>
+
+          <div class="skills-grid reveal delay-4">
+            <div class="skill-col">
+              <div class="skill-col-title">// Frontend</div>
+              <ul>
+                <li>HTML / CSS</li>
+                <li>JavaScript (ES6+)</li>
+                <li>React.js</li>
+                <li>WordPress</li>
+                <li>Elementor</li>
+              </ul>
+            </div>
+            <div class="skill-col">
+              <div class="skill-col-title">// Backend &amp; IoT</div>
+              <ul>
+                <li>Node.js / Express</li>
+                <li>MongoDB</li>
+                <li>C / C++</li>
+                <li>Arduino / ESP32</li>
+                <li>Capteurs IoT</li>
+              </ul>
+            </div>
+            <div class="skill-col">
+              <div class="skill-col-title">// Outils</div>
+              <ul>
+                <li>Git / GitHub</li>
+                <li>VS Code</li>
+                <li>WordPress</li>
+                <li>Elementor</li>
+                <li>Vercel / Netlify</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="about-right reveal delay-3">
+          <div class="about-cube-wrap">
+            <canvas id="cube-canvas" width="420" height="420"></canvas>
+            <div class="cube-badge">OPEN TO WORK ✦</div>
+          </div>
+          <div class="stats-row">
+            <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Projets</div></div>
+            <div class="stat"><div class="stat-num">3</div><div class="stat-label">Ans d'xp</div></div>
+            <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Passion</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04 — CONTACT -->
+    <section class="fp-section" id="contact" data-index="3">
+      <div class="section-count" aria-hidden="true">04</div>
+      <div class="section-label reveal">04 — Contact</div>
+      <div class="contact-layout">
+        <div class="contact-left">
+          <h2 class="contact-big reveal delay-1">PARLONS<br><span class="contact-outline">D'UN</span><br><span class="title-grad">PROJET.</span></h2>
+          <p class="about-txt reveal delay-2">Tu as une idée ? Un projet ? Un besoin ?<br>Écris-moi — je réponds dans les 24h.</p>
+        </div>
+        <div class="contact-right">
+          <div class="contact-links reveal delay-2">
+            <a class="contact-link" href="mailto:hadjouriyad@gmail.com">
+              <div class="cl-label">// Email</div>
+              <div class="cl-val">hadjouriyad@gmail.com <span>↗</span></div>
+            </a>
+            <a class="contact-link" href="https://www.linkedin.com/in/iyad-hadjour" target="_blank" rel="noopener">
+              <div class="cl-label">// LinkedIn</div>
+              <div class="cl-val">/in/iyad-hadjour <span>↗</span></div>
+            </a>
+            <a class="contact-link" href="https://github.com/Iyaiya2" target="_blank" rel="noopener">
+              <div class="cl-label">// GitHub</div>
+              <div class="cl-val">/Iyaiya2 <span>↗</span></div>
+            </a>
+          </div>
+          <a class="btn-neon reveal delay-4" href="mailto:hadjouriyad@gmail.com" style="display:inline-block;margin-top:2.5rem;">Envoyer un message <span>→</span></a>
+        </div>
+      </div>
+      <footer class="site-footer">
+        <span>© 2025 — Iyad Hadjour</span>
+        <span>Fait avec ♥ par votre serviteur Iyad Hadjour</span>
+        <span>Paris, France 🇫🇷</span>
+      </footer>
+    </section>
+
+  </main>
+
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <div class="section-dots" id="section-dots">
+    <button class="dot active" data-target="0" aria-label="Section 1"></button>
+    <button class="dot" data-target="1" aria-label="Section 2"></button>
+    <button class="dot" data-target="2" aria-label="Section 3"></button>
+    <button class="dot" data-target="3" aria-label="Section 4"></button>
+  </div>
+
+  <script src="js/webgl.js"></script>
+  <script src="js/cube.js"></script>
+  <script src="js/hero3d.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
