@@ -14,7 +14,7 @@ window.addEventListener('resize', setVH);
 
 /* Détection mobile */
 function isMobile() {
-  return window.innerWidth <= 1024;
+  return window.innerWidth <= 768;
 }
 
 /* ============================================================
@@ -188,16 +188,7 @@ function isMobile() {
     if (e.key === 'ArrowUp'   || e.key === 'PageUp')   goTo(currentIdx - 1);
   });
 
-  // Touch desktop (tablette en mode desktop)
-  let touchY = 0;
-  window.addEventListener('touchstart', e => { touchY = e.touches[0].clientY; }, { passive: true });
-  window.addEventListener('touchend', e => {
-    const dy = touchY - e.changedTouches[0].clientY;
-    if (Math.abs(dy) > 50) {
-      if (dy > 0) goTo(currentIdx + 1);
-      else        goTo(currentIdx - 1);
-    }
-  }, { passive: true });
+  // Touch désactivé — scroll natif sur tous les écrans tactiles
 
   // Dots
   dots.forEach(d => {
