@@ -3,18 +3,19 @@
    Cursor · Loader · Scroll smooth · Reveal · Nav · Dots
 ============================================================ */
 
-/* ============================================================
-   0. HELPERS
-============================================================ */
 function lerp(a, b, t) { return a + (b - a) * t; }
 function clamp(v, min, max) { return Math.min(Math.max(v, min), max); }
 
-/* Fix 100vh mobile */
 function setVH() {
   document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
 }
 setVH();
 window.addEventListener('resize', setVH);
+
+/* Détection mobile */
+function isMobile() {
+  return window.innerWidth <= 1024;
+}
 
 /* ============================================================
    1. LOADER
@@ -23,22 +24,17 @@ window.addEventListener('resize', setVH);
   const loader     = document.getElementById('loader');
   const loaderFill = document.getElementById('loader-fill');
   const loaderLbl  = document.getElementById('loader-label');
-
-  let progress = 0;
-  let done     = false;
+  let progress = 0, done = false;
 
   const interval = setInterval(() => {
     progress += Math.random() * 18 + 4;
     if (progress >= 100) { progress = 100; done = true; }
-
     loaderFill.style.width = progress + '%';
     loaderLbl.textContent  = `CHARGEMENT — ${Math.floor(progress)}%`;
-
     if (done) {
       clearInterval(interval);
       setTimeout(() => {
         loader.classList.add('hidden');
-        /* Trigger reveal sur le hero dès l'ouverture */
         triggerReveal(document.getElementById('hero'));
       }, 300);
     }
@@ -46,14 +42,13 @@ window.addEventListener('resize', setVH);
 })();
 
 /* ============================================================
-   2. CURSOR
+   2. CURSOR (desktop uniquement)
 ============================================================ */
 (function initCursor() {
+  if (isMobile()) return;
   const dot  = document.getElementById('cursor-dot');
   const ring = document.getElementById('cursor-ring');
-
-  let mx = 0, my = 0; // mouse target
-  let rx = 0, ry = 0; // ring position (lagged)
+  let mx=0, my=0, rx=0, ry=0;
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
@@ -69,28 +64,17 @@ window.addEventListener('resize', setVH);
     requestAnimationFrame(animRing);
   })();
 
-  /* Hover states */
-  const hoverEls = 'a, button, .project-item, .skill-col li, .contact-link, .dot, .s-nav-btn';
+  const hoverEls = 'a, button, .project-item, .skill-col li, .contact-link, .dot';
   document.querySelectorAll(hoverEls).forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
-
-  /* Link click pulse */
   document.querySelectorAll('a').forEach(a => {
     a.addEventListener('mouseenter', () => document.body.classList.add('cursor-link'));
     a.addEventListener('mouseleave', () => document.body.classList.remove('cursor-link'));
   });
-
-  /* Hide when out of window */
-  document.addEventListener('mouseleave', () => {
-    dot.style.opacity  = '0';
-    ring.style.opacity = '0';
-  });
-  document.addEventListener('mouseenter', () => {
-    dot.style.opacity  = '1';
-    ring.style.opacity = '1';
-  });
+  document.addEventListener('mouseleave', () => { dot.style.opacity='0'; ring.style.opacity='0'; });
+  document.addEventListener('mouseenter', () => { dot.style.opacity='1'; ring.style.opacity='1'; });
 })();
 
 /* ============================================================
@@ -101,24 +85,21 @@ window.addEventListener('resize', setVH);
   const burger = document.getElementById('burger');
   const menu   = document.getElementById('mobile-menu');
 
-  /* Scroll → ajoute classe scrolled */
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
-  /* Burger toggle */
   burger.addEventListener('click', () => {
     menu.classList.toggle('open');
   });
 
-  /* Fermer menu mobile au clic lien */
   menu.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => menu.classList.remove('open'));
   });
 })();
 
 /* ============================================================
-   4. SMOOTH SCROLL & SECTION TRACKING
+   4. SCROLL — FULLPAGE sur desktop, LIBRE sur mobile
 ============================================================ */
 (function initScroll() {
   const sections  = Array.from(document.querySelectorAll('.fp-section'));
@@ -127,40 +108,71 @@ window.addEventListener('resize', setVH);
   const progressB = document.getElementById('progress-bar');
 
   let currentIdx = 0;
-  let isScrolling = false;
 
-  /* ----- Go to section ----- */
+  /* ----- Update nav / dots / progress ----- */
+  function updateUI(idx) {
+    const pct = (idx / (sections.length - 1)) * 100;
+    progressB.style.width = pct + '%';
+    navLinks.forEach(a => {
+      a.classList.toggle('active', parseInt(a.dataset.section, 10) === idx);
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+
+  /* ══════════════════════════════════════
+     MOBILE — scroll libre natif
+  ══════════════════════════════════════ */
+  if (isMobile()) {
+    // Sur mobile : scroll natif, on suit juste la section visible
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
+          const idx = sections.indexOf(entry.target);
+          if (idx !== -1) {
+            currentIdx = idx;
+            updateUI(idx);
+            if (typeof window.glSetSection === 'function') window.glSetSection(idx);
+          }
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => io.observe(s));
+
+    // Liens nav sur mobile → scroll natif vers la section
+    document.querySelectorAll('[data-section]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const idx = parseInt(a.dataset.section, 10);
+        sections[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    dots.forEach(d => {
+      d.addEventListener('click', () => {
+        const idx = parseInt(d.dataset.target, 10);
+        sections[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    updateUI(0);
+    return; // On s'arrête ici pour mobile
+  }
+
+  /* ══════════════════════════════════════
+     DESKTOP — fullpage scroll par section
+  ══════════════════════════════════════ */
   function goTo(idx) {
     idx = clamp(idx, 0, sections.length - 1);
     if (idx === currentIdx) return;
     currentIdx = idx;
-
     sections[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
     updateUI(idx);
     triggerReveal(sections[idx]);
-
-    /* WebGL palette */
-    if (typeof window.glSetSection === 'function') {
-      window.glSetSection(idx);
-    }
+    if (typeof window.glSetSection === 'function') window.glSetSection(idx);
   }
 
-  /* ----- Update nav / dots / progress ----- */
-  function updateUI(idx) {
-    /* Progress bar */
-    const pct = (idx / (sections.length - 1)) * 100;
-    progressB.style.width = pct + '%';
-
-    /* Nav active link */
-    navLinks.forEach(a => {
-      a.classList.toggle('active', parseInt(a.dataset.section, 10) === idx);
-    });
-
-    /* Dots */
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-  }
-
-  /* ----- Wheel scroll ----- */
+  // Wheel
   let wheelLock = false;
   window.addEventListener('wheel', e => {
     if (wheelLock) return;
@@ -170,17 +182,15 @@ window.addEventListener('resize', setVH);
     else              goTo(currentIdx - 1);
   }, { passive: true });
 
-  /* ----- Keyboard ----- */
+  // Keyboard
   window.addEventListener('keydown', e => {
     if (e.key === 'ArrowDown' || e.key === 'PageDown') goTo(currentIdx + 1);
     if (e.key === 'ArrowUp'   || e.key === 'PageUp')   goTo(currentIdx - 1);
   });
 
-  /* ----- Touch swipe ----- */
+  // Touch desktop (tablette en mode desktop)
   let touchY = 0;
-  window.addEventListener('touchstart', e => {
-    touchY = e.touches[0].clientY;
-  }, { passive: true });
+  window.addEventListener('touchstart', e => { touchY = e.touches[0].clientY; }, { passive: true });
   window.addEventListener('touchend', e => {
     const dy = touchY - e.changedTouches[0].clientY;
     if (Math.abs(dy) > 50) {
@@ -189,12 +199,12 @@ window.addEventListener('resize', setVH);
     }
   }, { passive: true });
 
-  /* ----- Dot click ----- */
+  // Dots
   dots.forEach(d => {
     d.addEventListener('click', () => goTo(parseInt(d.dataset.target, 10)));
   });
 
-  /* ----- Nav link click ----- */
+  // Nav links
   document.querySelectorAll('[data-section]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
@@ -202,7 +212,7 @@ window.addEventListener('resize', setVH);
     });
   });
 
-  /* ----- Intersection Observer pour fallback scroll natif ----- */
+  // Intersection observer fallback
   const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
@@ -217,8 +227,6 @@ window.addEventListener('resize', setVH);
   }, { threshold: 0.5 });
 
   sections.forEach(s => io.observe(s));
-
-  /* Init */
   updateUI(0);
 })();
 
@@ -229,26 +237,22 @@ function triggerReveal(section) {
   if (!section) return;
   const els = section.querySelectorAll('.reveal');
   els.forEach(el => {
-    /* Reset pour re-animer à chaque visite de section */
     el.classList.remove('visible');
-    void el.offsetWidth; // reflow
+    void el.offsetWidth;
     el.classList.add('visible');
   });
 }
 
-/* Observer pour la section hero (au cas où le loader est déjà passé) */
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      triggerReveal(e.target);
-    }
+    if (e.isIntersecting) triggerReveal(e.target);
   });
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.fp-section').forEach(s => revealObserver.observe(s));
 
 /* ============================================================
-   6. MARQUEE — pause au hover
+   6. MARQUEE
 ============================================================ */
 (function initMarquee() {
   const track = document.querySelector('.marquee-track');
@@ -258,47 +262,19 @@ document.querySelectorAll('.fp-section').forEach(s => revealObserver.observe(s))
 })();
 
 /* ============================================================
-   7. PROJECT ITEMS — micro-interaction magnétique curseur
+   7. PROJECT ITEMS — magnétique (desktop uniquement)
 ============================================================ */
 (function initMagnet() {
+  if (isMobile()) return;
   document.querySelectorAll('.project-item').forEach(item => {
     item.addEventListener('mousemove', e => {
-      const rect   = item.getBoundingClientRect();
-      const relX   = e.clientX - rect.left;
-      const relY   = e.clientY - rect.top;
-      const pctX   = (relX / rect.width  - 0.5) * 8;
-      const pctY   = (relY / rect.height - 0.5) * 6;
-      item.style.transform = `translate(${pctX}px, ${pctY}px)`;
+      const rect = item.getBoundingClientRect();
+      const pctX = (e.clientX - rect.left) / rect.width  - 0.5;
+      const pctY = (e.clientY - rect.top)  / rect.height - 0.5;
+      item.style.transform = `translate(${pctX*8}px, ${pctY*6}px)`;
     });
-    item.addEventListener('mouseleave', () => {
-      item.style.transform = '';
-    });
+    item.addEventListener('mouseleave', () => { item.style.transform = ''; });
   });
 })();
 
-/* ============================================================
-   8. TITLE LETTERS SPLIT (hero)
-============================================================ */
-(function initSplitTitle() {
-  /* On split les spans .title-line en caractères animés */
-  document.querySelectorAll('.title-line').forEach(line => {
-    /* On prend uniquement le texte direct, on garde les spans enfants */
-    const childNodes = Array.from(line.childNodes);
-    childNodes.forEach(node => {
-      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
-        const chars = node.textContent.split('');
-        const frag  = document.createDocumentFragment();
-        chars.forEach((ch, i) => {
-          const s = document.createElement('span');
-          s.textContent = ch === ' ' ? '\u00A0' : ch;
-          s.style.display = 'inline-block';
-          s.style.transitionDelay = `${0.5 + i * 0.03}s`;
-          frag.appendChild(s);
-        });
-        node.replaceWith(frag);
-      }
-    });
-  });
-})();
-
-console.log('%c [ DEV ] Portfolio chargé ✦', 'color:#a8ff3e;font-family:monospace;font-size:14px;');
+console.log('%c [ IH ] Portfolio Iyad Hadjour ✦', 'color:#a8ff3e;font-family:monospace;font-size:14px;');
