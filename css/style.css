@@ -30,6 +30,8 @@ body {
 a { text-decoration: none; color: inherit; cursor: none; }
 ul { list-style: none; }
 button { cursor: none; }
+img, svg, canvas, video { max-width: 100%; }
+html, body { max-width: 100%; overflow-x: hidden; }
 
 /* Sur mobile — scroll normal autorisé */
 @media (max-width: 1024px) {
@@ -244,8 +246,22 @@ body.cursor-link  #cursor-ring { width: 50px; height: 50px; opacity: 0; }
 .pi-tags { display:flex; gap:.4rem; flex-wrap:wrap; justify-content:flex-end; }
 .pi-tags span { font-family:var(--font-mono); font-size:9px; letter-spacing:.06em; padding:.3rem .6rem; border:1px solid var(--border); color:rgba(255,255,255,.4); text-transform:uppercase; transition:border-color .3s,color .3s; }
 .project-item:hover .pi-tags span { border-color:rgba(168,255,62,.25); color:rgba(168,255,62,.7); }
-.pi-link { font-size:20px; color:rgba(255,255,255,.2); transition:color .3s,transform .3s; line-height:1; }
-.project-item:hover .pi-link { color:var(--accent); transform:translate(4px,-4px); }
+.pi-link {
+  font-size:16px;
+  color: var(--black);
+  background: var(--accent);
+  line-height:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  flex-shrink:0;
+  transition: transform .3s, background .3s;
+}
+.project-item:hover .pi-link { transform:translate(3px,-3px); }
+.pi-link:active { transform: scale(.92); }
 
 /* ============================================================
    ABOUT — FIX
@@ -342,6 +358,10 @@ body::before { content:''; position:fixed; inset:0; z-index:500; pointer-events:
   /* Work */
   .work-layout { grid-template-columns: 1fr; }
   .section-title { position: static; font-size: 56px; }
+  .project-item { flex-wrap: wrap; }
+  .pi-left { flex: 1 1 320px; min-width: 0; }
+  .pi-desc { max-width: 100%; }
+  .pi-right { flex: 0 0 auto; }
 
   /* About */
   #about.fp-section { padding-top: 5rem; overflow-y: auto; }
@@ -403,8 +423,23 @@ body::before { content:''; position:fixed; inset:0; z-index:500; pointer-events:
   #work.fp-section { padding-top: 4rem; }
   .work-layout { grid-template-columns: 1fr; gap: 1.5rem; }
   .section-title { position: static; font-size: clamp(40px, 11vw, 64px); margin-bottom: 1.5rem; }
-  .pi-right { flex-direction: row; align-items: center; flex-wrap: wrap; }
+  .project-item {
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 1rem;
+  }
+  .pi-left { width: 100%; min-width: 0; }
   .pi-desc { max-width: 100%; }
+  .pi-right {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .6rem;
+  }
+  .pi-tags { justify-content: flex-start; }
 
   /* ── ABOUT ── */
   #about.fp-section {
@@ -462,5 +497,25 @@ body::before { content:''; position:fixed; inset:0; z-index:500; pointer-events:
 @media (max-width: 480px) {
   #hero.fp-section {
     padding-bottom: 300px !important;
+  }
+}
+
+/* Globe : repositionné pour mobile (les valeurs desktop left:65%/centré
+   ne fonctionnent pas quand le globe est forcé visible sur petit écran) */
+@media (max-width: 768px) {
+  #hero-globe {
+    left: 50% !important;
+    top: auto !important;
+    bottom: 40px !important;
+    transform: translate(-50%, 0) !important;
+    width: min(260px, 70vw);
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  #hero-globe {
+    bottom: 24px !important;
+    width: min(220px, 65vw);
   }
 }
