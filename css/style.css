@@ -336,6 +336,10 @@ mark { padding: .05em .35em; border-radius: .25em; background: var(--sun); color
 }
 .manga-panel:nth-child(odd) { rotate: -1.5deg; }
 .manga-panel:nth-child(even) { rotate: 1.5deg; }
+.manga-panel:nth-child(1) { background: var(--paper); }
+.manga-panel:nth-child(2) { background: var(--pink); }
+.manga-panel:nth-child(3) { background: var(--sky); }
+.manga-panel:nth-child(4) { background: var(--mint); }
 .manga-panel:hover {
   translate: -5px -5px;
   box-shadow: 13px 13px 0 var(--ink);
