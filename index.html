@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iyad Hadjour — Développeur web &amp; IA</title>
+  <meta name="description" content="Portfolio d’Iyad Hadjour, étudiant à l’ESD Paris. Création de sites web modernes et intégrations IA (bots). Disponible pour vos projets.">
+  <meta name="theme-color" content="#B7DAFF">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Iyad Hadjour — Développeur web &amp; IA">
+  <meta property="og:description" content="Développement de sites web et intégrations IA. Étudiant à l’ESD Paris, disponible pour vos projets.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Gochi+Hand&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=2000">
+</head>
+<body>
+  <a class="skip" href="#main">Aller au contenu</a>
+
+  <!-- Étoile du logo, réutilisée dans la page -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="star" viewBox="0 0 100 100"><path d="M50 0L53.5355 35.3553L85.3553 14.6447L64.6447 46.4645L100 50L64.6447 53.5355L85.3553 85.3553L53.5355 64.6447L50 100L46.4645 64.6447L14.6447 85.3553L35.3553 53.5355L0 50L35.3553 46.4645L14.6447 14.6447L46.4645 35.3553L50 0Z"/></symbol>
+  </svg>
+
+  <header class="nav" id="top">
+    <a class="nav-logo" href="#top" aria-label="Iyad Hadjour, retour en haut de page">
+      <img src="/assets/logo-Photoroom.png" alt="Iyad Hadjour">
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#about">À propos</a>
+      <a href="#projets">Projets</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+    <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <div class="menu" id="menu" inert>
+    <nav aria-label="Menu mobile">
+      <a class="menu-link" href="#about">À propos</a>
+      <a class="menu-link" href="#projets">Projets</a>
+      <a class="menu-link" href="#contact">Contact</a>
+    </nav>
+    <div class="menu-foot">
+      <a href="mailto:hello@iyad-hadjour.fr">hello@iyad-hadjour.fr</a>
+      <a href="https://github.com/Iyaiya2" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/iyad-hadjour" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+
+        <p class="badge"><span class="badge-dot" aria-hidden="true"></span>Disponible à tout moment pour vos projets Web &amp; IA</p>
+
+        <!-- Le nuage de pensée -->
+        <div class="thought">
+          <svg class="thought-shape" viewBox="-2 -4 634 506" aria-hidden="true" focusable="false">
+            <defs>
+              <g id="puffs">
+                <circle cx="562" cy="293.1" r="66"/><circle cx="514.6" cy="367.8" r="58"/><circle cx="438.2" cy="413.7" r="70"/>
+                <circle cx="350.8" cy="433.6" r="60"/><circle cx="261.4" cy="430" r="68"/><circle cx="176.7" cy="402.6" r="56"/>
+                <circle cx="106.5" cy="347.9" r="64"/><circle cx="74.1" cy="266.1" r="72"/><circle cx="98.6" cy="181" r="60.6"/>
+                <circle cx="162.3" cy="119.2" r="70.6"/><circle cx="244.7" cy="84.9" r="65.7"/><circle cx="333.9" cy="76.3" r="76"/>
+                <circle cx="421.6" cy="92.6" r="61.5"/><circle cx="500.1" cy="135.3" r="68.1"/><circle cx="554.3" cy="205.4" r="69.8"/>
+                <ellipse cx="320" cy="262" rx="236" ry="150"/>
+              </g>
+            </defs>
+            <use href="#puffs" class="cloud-shadow" transform="translate(14 14)"/>
+            <use href="#puffs" class="cloud-ink"/>
+            <use href="#puffs" class="cloud-fill"/>
+          </svg>
+          <div class="thought-body">
+            <h1 id="hero-title"><span>Développeur</span> <span>Web &amp; IA</span></h1>
+            <p class="thought-typed" aria-hidden="true">
+              <span class="typed-ghost">Et si ce capteur parlait directement à l’interface&nbsp;?</span>
+              <span class="typed-live">Et si ce capteur parlait directement à l’interface&nbsp;?</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Moi, le soleil et la traîne de bulles -->
+        <div class="scene">
+          <div class="sun" aria-hidden="true"></div>
+          <img class="portrait" src="/img/image-Photoroom - 2026-10-09T114052.882.png" alt="Portrait d’Iyad Hadjour" fetchpriority="high" oncontextmenu="return false;" ondragstart="return false;">
+          <span class="trail" aria-hidden="true"><i></i><i></i><i></i></span>
+          <p class="note note-me" aria-hidden="true">c’est moi&nbsp;!</p>
+          <svg class="note-arrow" viewBox="0 0 80 60" aria-hidden="true" focusable="false"><path d="M4 8C28 -2 62 8 67 42"/><path d="M54 35L67 44L73 29"/></svg>
+        </div>
+
+        <div class="foot">
+          <p class="foot-desc">Étudiant à l’ESD Paris. Je conçois des sites web modernes et j'explore tout ce que l'IA a à offrir, en gardant l'humain au centre.</p>
+          <div class="foot-actions">
+            <a class="btn" href="#contact">Discutons de votre projet</a>
+            <a class="link-plain" href="#projets">Voir mes projets</a>
+          </div>
+        </div>
+
+        <!-- Banc de nuages au pied du hero -->
+        <svg class="bank" width="100%" height="84" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="bank-tile" width="260" height="84" patternUnits="userSpaceOnUse">
+              <defs>
+                <g id="bank-shape">
+                  <circle cx="33" cy="60" r="30"/><circle cx="98" cy="46" r="40"/><circle cx="163" cy="50" r="38"/>
+                  <circle cx="228" cy="56" r="36"/><circle cx="-32" cy="56" r="36"/>
+                  <rect x="-40" y="64" width="340" height="40"/>
+                </g>
+              </defs>
+              <use href="#bank-shape" class="bank-ink"/>
+              <use href="#bank-shape" class="bank-fill"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="84" fill="url(#bank-tile)"/>
+        </svg>
+
+      </div>
+    </section>
+
+    <!-- ===================== À PROPOS ===================== -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <svg class="star-deco" style="right:8%;top:9%;width:30px;height:30px" aria-hidden="true"><use href="#star"/></svg>
+      <svg class="star-deco" style="left:4%;bottom:12%;width:20px;height:20px" aria-hidden="true"><use href="#star"/></svg>
+      <svg class="star-deco" style="right:30%;bottom:7%;width:14px;height:14px" aria-hidden="true"><use href="#star"/></svg>
+
+      <div class="about-grid">
+        <div class="about-head">
+          <h2 id="about-title" lang="en"><span>More than</span> <span>just code</span></h2>
+          <p class="note about-note">capteurs d’un côté, interfaces de l’autre</p>
+        </div>
+
+        <div class="about-text">
+          <h3>Qui suis-je&nbsp;?</h3>
+          <p>Étudiant à l’<strong>ESD Paris</strong>, je suis passionné par le <strong>Développement Web</strong> et l'<strong>Intelligence Artificielle</strong>. Je conçois et développe des sites web modernes. En parallèle, je me forme en profondeur sur l'IA pour tout savoir dessus... mais toujours en tant qu'humain avant tout.</p>
+
+          <h3>Mon objectif</h3>
+          <p>Créer des plateformes fluides, esthétiques et intelligentes. Je cherche à allier la technique du web et les nouvelles possibilités de l'IA pour construire des expériences digitales complètes.</p>
+          <p>Je crée des <strong>sites web</strong> sur mesure et réalise des <strong>intégrations IA avec des bots</strong>. Je suis <mark>disponible n'importe quand</mark> pour en discuter.</p>
+
+          <ul class="skills" aria-label="Compétences">
+            <li>Front-end</li><li>Back-end</li><li>Web design</li><li>Intelligence Artificielle</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJETS ===================== -->
+    <section class="projects" id="projets" aria-labelledby="projects-title">
+      <header class="projects-head">
+        <svg class="star" aria-hidden="true"><use href="#star"/></svg>
+        <h2 id="projects-title">Projets sélectionnés</h2>
+        <p class="note projects-note">quelques projets sur lesquels j’ai mis les mains</p>
+      </header>
+
+      <article class="project" style="--tone: var(--sun)">
+        <a class="shot" href="https://dpsmarket.com/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+          <span class="shot-bar"><i></i><i></i><i></i><span class="shot-url">dpsmarket.com</span></span>
+          <span class="shot-view"><img src="/img/dps.png" alt="" width="1600" height="1000" loading="lazy" decoding="async"></span>
+        </a>
+        <div class="project-text">
+          <h3>DPS Market</h3>
+          <ul class="tags"><li>Web design</li><li>WordPress B2B</li></ul>
+          <dl>
+            <dt>Le projet</dt>
+            <dd>Une plateforme e-commerce B2B destinée aux professionnels.</dd>
+            <dt>Mon rôle</dt>
+            <dd>J’ai réalisé la refonte complète de la présence en ligne, du web design jusqu’à l’intégration WordPress, avec l’optimisation du tunnel d’achat et la gestion d’un catalogue complexe.</dd>
+          </dl>
+          <a class="link-plain" href="https://dpsmarket.com/" target="_blank" rel="noopener noreferrer">Voir le site DPS Market</a>
+        </div>
+      </article>
+
+      <article class="project" style="--tone: var(--mint)">
+        <a class="shot" href="https://chillbefresh.fr/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+          <span class="shot-bar"><i></i><i></i><i></i><span class="shot-url">chillbefresh.fr</span></span>
+          <span class="shot-view"><img src="/img/chill.png" alt="" width="1600" height="1000" loading="lazy" decoding="async"></span>
+        </a>
+        <div class="project-text">
+          <h3>Chill Be Fresh</h3>
+          <ul class="tags"><li>UX/UI design</li><li>E-commerce</li></ul>
+          <dl>
+            <dt>Le projet</dt>
+            <dd>Une vitrine moderne et rafraîchissante pour une marque grand public.</dd>
+            <dt>Mon rôle</dt>
+            <dd>J’ai créé toute l’identité visuelle et l’expérience utilisateur (UX/UI). J’ai mis en place des animations fluides pour engager les visiteurs et mis en valeur les produits de la marque.</dd>
+          </dl>
+          <a class="link-plain" href="https://chillbefresh.fr/" target="_blank" rel="noopener noreferrer">Voir le site Chill Be Fresh</a>
+        </div>
+      </article>
+
+      <article class="project" style="--tone: var(--sky)">
+        <a class="shot" href="https://halorigin.com/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+          <span class="shot-bar"><i></i><i></i><i></i><span class="shot-url">halorigin.com</span></span>
+          <span class="shot-view"><img src="/img/halo.png" alt="" width="1600" height="1000" loading="lazy" decoding="async"></span>
+        </a>
+        <div class="project-text">
+          <h3>Hal’Origin</h3>
+          <ul class="tags"><li>Plateforme web</li><li>Traçabilité</li></ul>
+          <dl>
+            <dt>Le projet</dt>
+            <dd>Une plateforme web innovante centrée sur la transparence et la certification.</dd>
+            <dt>Mon rôle</dt>
+            <dd>J’ai développé l’interface utilisateur pour restituer des données de certification complexes de manière épurée et accessible aux utilisateurs finaux.</dd>
+          </dl>
+          <a class="link-plain" href="https://halorigin.com/" target="_blank" rel="noopener noreferrer">Voir le site Hal’Origin</a>
+        </div>
+      </article>
+
+      <article class="project" style="--tone: var(--pink)">
+        <div class="shot">
+          <span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot-url">big2big</span></span>
+          <span class="shot-view"><img src="/img/big2big.png" alt="Aperçu du catalogue Big2Big" width="1600" height="1000" loading="lazy" decoding="async"></span>
+          <span class="note soon" aria-hidden="true">bientôt&nbsp;!</span>
+        </div>
+        <div class="project-text">
+          <h3>Big2Big</h3>
+          <ul class="tags"><li>Design catalogue</li><li>B2B</li></ul>
+          <dl>
+            <dt>Le projet</dt>
+            <dd>Un vaste catalogue digitalisé pour un acteur majeur du B2B.</dd>
+            <dt>Mon rôle</dt>
+            <dd>J’ai conçu l’interface complète en mettant l’accent sur l’architecture de l’information pour rendre la recherche de produits fluide et intuitive.</dd>
+          </dl>
+          <p class="project-soon">Bientôt en ligne</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- ===================== CONTACT ===================== -->
+  <footer class="contact" id="contact">
+    <div class="contact-grid">
+      <div>
+        <h2>Prêt à collaborer&nbsp;?</h2>
+        <p class="contact-lead">Besoin d'un site web, d'une intégration de bot IA, ou l’envie d’en discuter&nbsp;? Je suis disponible n'importe quand. Écrivez-moi, on regarde ça ensemble.</p>
+        <div class="contact-actions">
+          <a class="btn btn-light" href="mailto:hello@iyad-hadjour.fr">Envoyer un e-mail</a>
+          <button class="btn btn-sun" type="button" data-copy="hello@iyad-hadjour.fr"><span data-copy-label aria-live="polite">Copier l’adresse</span></button>
+        </div>
+      </div>
+      <div class="contact-me">
+        <p class="note speech" aria-hidden="true">Écrivez-moi&nbsp;!</p>
+        <img class="avatar" src="/img/image-Photoroom - 2026-10-09T114052.882.png" alt="" loading="lazy" decoding="async" oncontextmenu="return false;" ondragstart="return false;">
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <p>© 2026 Iyad Hadjour</p>
+      <p class="note footer-thanks">merci d’être passé par là</p>
+      <ul class="socials">
+        <li><a href="https://github.com/Iyaiya2" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/iyad-hadjour" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
