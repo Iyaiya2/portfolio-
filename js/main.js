@@ -29,7 +29,7 @@
   const ghost = $('.typed-ghost');
   if (live && ghost && !reduceMotion) {
     const phrases = [
-      'Et si ce capteur parlait directement à l’interface\u00a0?',
+      'Et si l\'IA devenait le meilleur allié de votre entreprise\u00a0?',
       'Et si ce site avait enfin une âme\u00a0?',
       'Et si l’IA rendait tout ça plus simple\u00a0?',
       'Et si on construisait ça ensemble\u00a0?',
